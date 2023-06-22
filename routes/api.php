@@ -24,6 +24,9 @@ Route::prefix('v1')->group(function () {
 
     Route::get('/getCitas', [CitasController::class, 'show'])
         ->name('v1.getCitas');
+
+    Route::post('/citas/{type}/{id}/1', [CitasController::class, 'update'])
+        ->name('v1.updateStatusCitas');
 });
 
 
