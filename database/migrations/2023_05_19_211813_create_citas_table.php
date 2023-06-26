@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('phone');
             $table->string('day');
             $table->string('hour');
+            $table->string('comment')->nullable()->default(null);
             $table->boolean('contacted')->default(false);
             $table->boolean('answer')->default(false);
             $table->timestamps();

@@ -98,6 +98,49 @@ class CitasController extends Controller
         }
     }
 
+    public function getMessageById(Request $request, $id)
+    {
+        if (!isset($id) || !is_numeric($id)) 
+        {
+            return response()->json([
+                'response' => false,
+                'message' => 'Parametros incorrectos',
+            ], 200);
+        }else{
+
+            $comment = Citas::where('id', $id)
+                ->value('comment');
+
+            return response()->json([
+                'response' => true,
+                'comment' => $comment,
+            ], 200);
+
+        }
+    }
+
+    public function updateMessageById(Request $request, $id, $comment)
+    {
+        if (!isset($comment) || !is_string($comment) || !isset($id) || !is_numeric($id)) 
+        {
+            return response()->json([
+                'response' => false,
+                'message' => 'Parametros incorrectos',
+            ], 200);
+            
+        }else{
+
+            $updateCommentCita = Citas::where('id', $id)
+                ->update(['comment' => $comment]);
+
+            return response()->json([
+                'response' => true,
+                'message' => 'Ha sido actualizado el comentario con el id: ' .$id,
+            ], 200);
+
+        }
+    }
+
     /**
      * Show the form for editing the specified resource.
      */

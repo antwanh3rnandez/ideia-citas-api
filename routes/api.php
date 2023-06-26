@@ -27,6 +27,12 @@ Route::prefix('v1')->group(function () {
 
     Route::post('/citas/{type}/{id}/1', [CitasController::class, 'update'])
         ->name('v1.updateStatusCitas');
+
+    Route::get('/citas/comment/{id}', [CitasController::class, 'getMessageById'])
+        ->name('v1.getCommentById');
+
+    Route::post('/citas/send-comment/{id}/{comment}', [CitasController::class, 'updateMessageById'])
+        ->name('v1.updateMessageById');
 });
 
 
